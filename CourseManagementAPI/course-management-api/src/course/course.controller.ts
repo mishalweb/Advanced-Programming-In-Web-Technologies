@@ -1,0 +1,32 @@
+import { Controller, Get, Post, Patch, Delete, Param } from '@nestjs/common';
+import { CourseService } from './course.service.js';
+ 
+@Controller('course')
+export class CourseController {
+// Constructor-based dependency injection (required by the task)
+constructor(private readonly courseService: CourseService) {}
+ 
+// GET http://localhost:3000/course/:id
+@Get(':id')
+getCourse(@Param('id') id: string): string {
+return this.courseService.getCourseById(id);
+}
+ 
+// POST http://localhost:3000/course
+@Post()
+createCourse(): string {
+return this.courseService.createCourse();
+}
+ 
+// PATCH http://localhost:3000/course
+@Patch()
+updateCourse(): string {
+return this.courseService.updateCourse();
+}
+ 
+// DELETE http://localhost:3000/course
+@Delete()
+deleteCourse(): string {
+return this.courseService.deleteCourse();
+}
+}
